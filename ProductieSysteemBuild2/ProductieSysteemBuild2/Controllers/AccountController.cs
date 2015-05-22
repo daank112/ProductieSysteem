@@ -18,25 +18,50 @@ using System.Web.Security;
 
 namespace ProductieSysteemBuild2.Controllers
 {
+    
     public class AccountController : Controller
     {
         IdentityDataContext context = new IdentityDataContext();
         // GET: Account
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
 
+            Roles.GetRolesForUser(User.Identity.Name);
+            User.Identity.AuthenticationType.ToString();
+            ViewBag.Name = User.Identity.Name.ToString();
             return View();
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult CreateUser()
         {
+            List<SelectListItem> items = new List<SelectListItem>();
+
+          //  ViewBag.Books = new SelectList(books);
+
+           
+
+            aspnet_Roles roles = new aspnet_Roles();
+            foreach (string role in Roles.GetAllRoles())
+            {
+                items.Add(new SelectListItem { Text = role.ToString(), Value = "0" });
+            }
+
+
+            ViewBag.Roles = new SelectList(items);
+           
+            
             return View();
             
-            
         }
-        [HttpPost]
-        
-        public ActionResult CreateUser(Gebruikers model)
+        [Authorize(Roles = "Admin")]
+        [HttpPost]        
+        public ActionResult CreateUser(Gebruikers model, string GetRole)
         {
+            //.GetRoleBook book = FetchYourBookFromTheId(selectedBookId);
+            string a = GetRole;
+
+            //ViewBag.Roles = items;
             try
             {
                 var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new IdentityDataContext()));
@@ -48,8 +73,9 @@ namespace ProductieSysteemBuild2.Controllers
                     EmailConfirmed = false,
                 };
                 manager.Create(newUser, model.PasswordHash);
-
-                Roles.AddUserToRole(model.UserName, "Admin");
+               // string a = form["Roles"].ToString();
+               // a.ToString();
+                Roles.AddUserToRole(model.UserName,"Admin");
 
                 //manager.AddToRoleAsync(newUser.Id, "Admin");
 
@@ -93,7 +119,7 @@ namespace ProductieSysteemBuild2.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Account");
                     }
                 }
                 else
@@ -114,7 +140,7 @@ namespace ProductieSysteemBuild2.Controllers
         //    AuthenticationManager.Register(new AuthenticationProperties() { IsPersistent = isPersisten }, identity);
 
         //}
-        
+        [Authorize(Roles = "Admin")]
         public ActionResult RolesView()
         {
             var roles = context.Roles.ToList(); 

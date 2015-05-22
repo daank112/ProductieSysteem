@@ -6,7 +6,7 @@ namespace ProductieSysteemBuild2.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("tbl_.GebruikersType")]
+    [Table("[dbo].[aspnet_Roles]")]
     public partial class GebruikersType
     {
         public GebruikersType()

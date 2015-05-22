@@ -2,9 +2,11 @@ namespace ProductieSysteemBuild2.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web.Security;
 
     [Table("tbl_.Gebruikers")]
     public partial class Gebruikers
@@ -21,6 +23,7 @@ namespace ProductieSysteemBuild2.Models
 
         public bool EmailConfirmed { get; set; }
 
+        [DisplayName("Wachtwoord")]
         public string PasswordHash { get; set; }
 
         public string SecurityStamp { get; set; }
@@ -38,10 +41,12 @@ namespace ProductieSysteemBuild2.Models
         public int AccessFailedCount { get; set; }
 
         [Required]
+        [DisplayName("Gebruikersnaam")]
         [StringLength(256)]
         public string UserName { get; set; }
 
         public virtual ICollection<GebruikersTypeRol> GebruikersTypeRol { get; set; }
+
     }
     public class RegisterNewUser
     {
@@ -51,7 +56,6 @@ namespace ProductieSysteemBuild2.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

@@ -23,6 +23,8 @@ namespace ProductieSysteemBuild2.Models
         public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<Producten> Producten { get; set; }
         public virtual DbSet<Weekproductie> Weekproductie { get; set; }
+        public virtual DbSet<aspnet_Roles> Roles { get; set; }
+
            
     }
     

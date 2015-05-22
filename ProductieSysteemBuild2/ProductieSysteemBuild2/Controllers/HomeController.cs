@@ -16,13 +16,11 @@ namespace ProductieSysteemBuild2.Controllers
         
         
         // GET: Home
-        [Authorize(Roles="Admin")]
+        //[Authorize(Roles="Admin")]
         public ActionResult Index()
         {
             
-            Roles.GetRolesForUser(User.Identity.Name);
-            User.Identity.AuthenticationType.ToString();
-            ViewBag.Name = User.Identity.Name.ToString();
+            
             return View();
         }
     }
