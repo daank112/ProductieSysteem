@@ -27,6 +27,7 @@ namespace ProductieSysteemBuild2.Controllers
         public ActionResult CreateUser()
         {
             return View();
+            
         }
         [HttpPost]
         public ActionResult CreateUser(Gebruikers model)
@@ -42,11 +43,14 @@ namespace ProductieSysteemBuild2.Controllers
                     EmailConfirmed = false,
                 };
                 manager.Create(newUser, model.PasswordHash);
+               
+
+
                 //manager.AddToRoleAsync(newUser.Id, "Admin");
 
                 manager.AddClaimAsync(newUser.Id, claim: new Claim(ClaimTypes.Role.ToString(), "Admin"));
                 //UserManager.AddClaimAsync(user, claim: new Claim(ClaimTypes.Role.ToString(), "Admin"));
-
+                
 
             }
             catch(Exception e)
@@ -62,15 +66,21 @@ namespace ProductieSysteemBuild2.Controllers
             return View();
         }
         [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(Gebruikers model, string returnUrl)
         {
+           
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new IdentityDataContext()));
+
             
+
             if (ModelState.IsValid)
             {
                 var user = await manager.FindAsync(model.UserName, model.PasswordHash);
                 if (user != null)
                 {
+                    //ClaimsIdentity identity = manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                     FormsAuthentication.SetAuthCookie(model.UserName,true);
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/") && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                     {
@@ -90,6 +100,15 @@ namespace ProductieSysteemBuild2.Controllers
             return View(model);
          }
 
+        //private async Task SingInAsync(ApplicationUser user, bool isPersisten)
+        //{
+        //    var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new IdentityDataContext()));
+
+        //    AuthenticationManager.Unregister(DefaultAuthenticationTypes.ExternalCookie);
+        //    var identity =  await manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+        //    AuthenticationManager.Register(new AuthenticationProperties() { IsPersistent = isPersisten }, identity);
+
+        //}
         
         public ActionResult Roles()
         {
