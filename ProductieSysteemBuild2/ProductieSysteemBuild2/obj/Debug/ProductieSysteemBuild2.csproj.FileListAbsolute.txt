@@ -73,6 +73,5 @@ C:\Users\Glenn\Documents\GitHub\ProductieSysteem\ProductieSysteemBuild2\Producti
 C:\Users\Glenn\Documents\GitHub\ProductieSysteem\ProductieSysteemBuild2\ProductieSysteemBuild2\bin\System.Web.WebPages.xml
 C:\Users\Glenn\Documents\GitHub\ProductieSysteem\ProductieSysteemBuild2\ProductieSysteemBuild2\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Glenn\Documents\GitHub\ProductieSysteem\ProductieSysteemBuild2\ProductieSysteemBuild2\bin\System.Web.WebPages.Razor.xml
-C:\Users\Glenn\Documents\GitHub\ProductieSysteem\ProductieSysteemBuild2\ProductieSysteemBuild2\obj\Debug\ProductieSysteemBuild2.csprojResolveAssemblyReference.cache
 C:\Users\Glenn\Documents\GitHub\ProductieSysteem\ProductieSysteemBuild2\ProductieSysteemBuild2\obj\Debug\ProductieSysteemBuild2.dll
 C:\Users\Glenn\Documents\GitHub\ProductieSysteem\ProductieSysteemBuild2\ProductieSysteemBuild2\obj\Debug\ProductieSysteemBuild2.pdb
