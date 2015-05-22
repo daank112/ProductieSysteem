@@ -1,0 +1,23 @@
+﻿@model ProductieSysteemBuild2.Models.Gebruikers
+
+@{
+    ViewBag.Title = "CreateUser";
+}
+
+<h2>CreateUser</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    @Html.LabelFor(model => model.UserName)
+    @Html.EditorFor(model => model.UserName)
+
+    @Html.LabelFor(model => model.PasswordHash)
+    @Html.EditorFor(model => model.PasswordHash)
+    
+    @Html.LabelFor(model => model.Email)
+    @Html.EditorFor(model => model.Email)
+
+    <input type="submit" value="create" />
+}

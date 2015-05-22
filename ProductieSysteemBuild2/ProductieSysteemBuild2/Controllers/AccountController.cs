@@ -14,6 +14,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
+
+
 namespace ProductieSysteemBuild2.Controllers
 {
     public class AccountController : Controller
@@ -22,20 +24,23 @@ namespace ProductieSysteemBuild2.Controllers
         // GET: Account
         public ActionResult Index()
         {
+
             return View();
         }
         public ActionResult CreateUser()
         {
             return View();
             
+            
         }
         [HttpPost]
+        
         public ActionResult CreateUser(Gebruikers model)
         {
             try
             {
                 var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new IdentityDataContext()));
-
+                
                 var newUser = new ApplicationUser()
                 {
                     UserName = model.UserName,
@@ -43,12 +48,12 @@ namespace ProductieSysteemBuild2.Controllers
                     EmailConfirmed = false,
                 };
                 manager.Create(newUser, model.PasswordHash);
-               
 
+                Roles.AddUserToRole(model.UserName, "Admin");
 
                 //manager.AddToRoleAsync(newUser.Id, "Admin");
 
-                manager.AddClaimAsync(newUser.Id, claim: new Claim(ClaimTypes.Role.ToString(), "Admin"));
+                //manager.AddClaimAsync(newUser.Id, claim: new Claim(ClaimTypes.Role.ToString(), "Admin"));
                 //UserManager.AddClaimAsync(user, claim: new Claim(ClaimTypes.Role.ToString(), "Admin"));
                 
 
@@ -110,7 +115,7 @@ namespace ProductieSysteemBuild2.Controllers
 
         //}
         
-        public ActionResult Roles()
+        public ActionResult RolesView()
         {
             var roles = context.Roles.ToList(); 
             return View(roles);
