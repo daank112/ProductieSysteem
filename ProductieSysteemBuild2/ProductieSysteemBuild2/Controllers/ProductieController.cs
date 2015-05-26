@@ -54,15 +54,30 @@ namespace ProductieSysteem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult WeekProductie([Bind(Include="")*/
-
+        public ActionResult Week()
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            for(int i = 0; i <= 100; i++){
+                items.Add(new SelectListItem
+                {
+                    Text = i.ToString(),
+                    Value = i.ToString()
+                });
+            }
+            ViewBag.Procenten = items;
+            
+            @ViewBag.CurrentWeek = GetWeekNumber(DateTime.Today);
+            return View();
+        }
         
-
+       
         public ActionResult ProductieBijstellen()
         {
 
             ViewData["Message"] = "Productie bijstellen";
             return View();
         }
+
 
     }
 }

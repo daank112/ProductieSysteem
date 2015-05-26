@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewBag.Title = "Week";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Weekverwachting opgeven</h2>
+<div class="alert alert-success" id="succes" style="display: none;" role="alert">Gegevens worden opgeslagen</div>
+<div class="alert alert-danger" id="alert" style="display: none;" role="alert"><p></p></div>
+
+<div class="row">
+    <div class="col-md-12">
+       <div class="col-md-4 col-xs-12 text-left">@Html.ActionLink("Vorige", "")</div> 
+        <div class="col-md-4 col-xs-12 text-center">Huidige week: @ViewBag.CurrentWeek</div> 
+        <div class="col-md-4 col-xs-12 text-right">@Html.ActionLink("Volgende", "")</div> 
+      
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+   
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        @foreach (var day in typeof(ProductieSysteemBuild2.Models.DagenInWeek).GetEnumNames())
+                        {
+                            <th>@day</th>
+                        }
+                        <th>Totaal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @foreach (var day in typeof(ProductieSysteemBuild2.Models.DagenInWeek).GetEnumNames())
+                        {
+                        
+                            <td class="col-md-1" id="input-@day">
+                                @Html.DropDownList("Procenten")
+                            </td>
+                       
+                        }
+                        <td>
+                             <input type="text" class="form-control">
+                        </td>
+                    </tr>
+                </tbody>
+                
+           
+            </table>
+        </div>
+    </div>
+    @Html.ActionLink("Opslaan", "")
+    <button id="button1"></button>
+}
+<script>
+    //Todo in here.
+    //Maak een array, push hier telekens de ietemsn in id 1, value 10%
+    //Push telkens de waarde naar de array.
+    //var total = [];
+    
+    //console.log(total);
+    //$("#input-Maandag").change(function () {
+    //    console.log($("#input-Maandag option:selected").text());
+    //    total.push($("#input-Maandag option:selected").text())
+    //});
+    //$("#input-Dinsdag").change(function () {
+    //    console.log($("#input-Dinsdag option:selected").text());
+    //    total.push($("#input-Dinsdag option:selected").text())
+    //});
+    //$("#input-Woensdag").change(function () {
+    //    console.log($("#input-Woensdag option:selected").text());
+    //    total.push($("#input-Woensdag option:selected").text());
+    //    console.log(total);
+    //});
+    //$("#input-Donderdag").change(function () {
+    //    console.log($("#input-Donderdag option:selected").text());
+    //    total.push($("#input-Donderdag option:selected").text())
+    //});
+    //$("#input-Vrijdag").change(function () {
+    //    console.log($("#input-Vrijdag option:selected").text());
+    //    total.push($("#input-Vrijdag option:selected").text())
+    //});
+    //$("#input-Zaterdag").change(function () {
+    //    console.log($("#input-Zaterdag option:selected").text());
+    //    total.push($("#input-Zaterdag option:selected").text())
+    //});
+    //$("#input-Zondag").change(function () {
+    //    console.log($("#input-Zondag option:selected").text());
+    //    total.push($("#input-Zondag option:selected").text())
+    //});
+    
+
+    $("#button1").click(function () {
+        var total = []; 
+        total.push($("#input-Maandag option:selected").text())
+        total.push($("#input-Dinsdag option:selected").text())
+        total.push($("#input-Woensdag option:selected").text());
+        total.push($("#input-Donderdag option:selected").text())
+        total.push($("#input-Vrijdag option:selected").text())
+        total.push($("#input-Zaterdag option:selected").text())
+        total.push($("#input-Zondag option:selected").text())
+        var result = 0;
+        for (var i = 0; i < total.length; i++) {
+            result += total[i] << 0;
+        }
+        if (result.toString() == 100)
+        {
+            
+            $("#succes").show();
+            $("#alert").hide();
+        }
+        else {
+            $("#texens").val(result);
+            $("p").text("De weekverwachting is niet correct. De som van de dagen is " + result);
+            $("#alert").show();
+        
+        }
+        console.log(result);
+
+       
+        
+    })
+</script>
