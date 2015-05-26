@@ -1,9 +1,19 @@
-﻿
+﻿@model  ProductieSysteemBuild2.Models.Weekproductie
 @{
     ViewBag.Title = "Week";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-
+@{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    for (int i = 0; i <= 100; i++)
+    {
+        listItems.Add(new SelectListItem
+             {
+                 Text = i.ToString(),
+                 Value = i.ToString()
+             });
+    }
+}
 <h2>Weekverwachting opgeven</h2>
 <div class="alert alert-success" id="succes" style="display: none;" role="alert">Gegevens worden opgeslagen</div>
 <div class="alert alert-danger" id="alert" style="display: none;" role="alert"><p></p></div>
@@ -34,14 +44,33 @@
                 </thead>
                 <tbody>
                     <tr>
-                        @foreach (var day in typeof(ProductieSysteemBuild2.Models.DagenInWeek).GetEnumNames())
-                        {
-                        
-                            <td class="col-md-1" id="input-@day">
-                                @Html.DropDownList("Procenten")
-                            </td>
+                      <td>                       
+                            @Html.DropDownListFor(m => m.maandag, listItems)
+                       </td>
+                       <td>
+                            @Html.DropDownListFor(m => m.dinsdag, listItems)
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(m => m.woensdag, listItems)
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(m => m.donderdag, listItems)
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(m => m.vrijdag, listItems)
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(m => m.zaterdag, listItems)
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(m => m.zondag, listItems)
+                        </td>
                        
-                        }
+                            
+                                
+                           
+                       
+                      
                         <td>
                              <input type="text" class="form-control">
                         </td>

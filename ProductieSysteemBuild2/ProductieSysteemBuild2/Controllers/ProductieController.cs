@@ -11,6 +11,7 @@ namespace ProductieSysteem.Controllers
 {
     public class ProductieController : Controller
     {
+        DataContext db = new DataContext();
         // GET: Dashboard
         public ActionResult Index()
         {
@@ -64,10 +65,21 @@ namespace ProductieSysteem.Controllers
                     Value = i.ToString()
                 });
             }
+
+
             ViewBag.Procenten = items;
             
             @ViewBag.CurrentWeek = GetWeekNumber(DateTime.Today);
             return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Week([Bind(Include = "weekId,maandag,dinsdag,woensdag,donderdag,vrijdag,zaterdag,zondag,productType")] Weekproductie weekproductie)
+        {
+            weekproductie.maandag = "1";
+            db.Weekproductie.Add(weekproductie);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
         
        
