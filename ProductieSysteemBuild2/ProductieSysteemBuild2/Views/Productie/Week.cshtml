@@ -18,11 +18,13 @@
 <div class="alert alert-success" id="succes" style="display: none;" role="alert">Gegevens worden opgeslagen</div>
 <div class="alert alert-danger" id="alert" style="display: none;" role="alert"><p></p></div>
 
+
+
 <div class="row">
     <div class="col-md-12">
-       <div class="col-md-4 col-xs-12 text-left">@Html.ActionLink("Vorige", "")</div> 
+       <div class="col-md-4 col-xs-12 text-left">@Html.ActionLink("Vorige Week", "week", "Productie", new { deWeek = "1" }, null)</div>        
         <div class="col-md-4 col-xs-12 text-center">Huidige week: @ViewBag.CurrentWeek</div> 
-        <div class="col-md-4 col-xs-12 text-right">@Html.ActionLink("Volgende", "")</div> 
+        <div class="col-md-4 col-xs-12 text-right">@Html.ActionLink("Volgende Week", "week", "Productie", new { deWeek = "2" }, null)</div> 
       
     </div>
 </div>

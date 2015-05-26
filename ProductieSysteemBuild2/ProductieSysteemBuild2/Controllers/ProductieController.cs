@@ -7,6 +7,7 @@ using ProductieSysteemBuild2.Models;
 using System.Globalization;
 
 
+
 namespace ProductieSysteem.Controllers
 {
     public class ProductieController : Controller
@@ -17,8 +18,20 @@ namespace ProductieSysteem.Controllers
         {
             return View();
         }
-        public ActionResult ProductieOpgeven(Weekproductie model)
+        public ActionResult ProductieOpgeven(Weekproductie model, int deWeek)
         {
+            if (deWeek != null)
+            {
+                ViewBag.Date = deWeek;
+                model.weekId = deWeek;
+            }
+            else
+            {
+                int weekid = GetWeekNumber(DateTime.Today);
+                ViewBag.Date = weekid;
+                model.weekId = weekid;
+
+            }
             ViewData["Message"] = "Productie opgeven";
             // return View();
             List<SelectListItem> items = new List<SelectListItem>();
@@ -30,13 +43,11 @@ namespace ProductieSysteem.Controllers
 
             ViewBag.Dagdelen = items;
 
-            string week = DateTime.Now.ToLongDateString();
+           // string week = DateTime.Now.ToLongDateString();
             
 
-            string aantal;
-            int weekid = GetWeekNumber(DateTime.Today);
-            ViewBag.Date = weekid;
-            model.weekId = weekid;
+//string aantal;
+           
             return View();
         }
 
@@ -55,8 +66,26 @@ namespace ProductieSysteem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult WeekProductie([Bind(Include="")*/
-        public ActionResult Week()
+        public ActionResult Week (string deWeek)
         {
+            
+            if (deWeek == "1")
+            {
+                @ViewBag.CurrentWeek = GetWeekNumber(DateTime.Today) - 1 ;
+               
+            }
+
+            if (deWeek == "2")
+            {
+                @ViewBag.CurrentWeek = GetWeekNumber(DateTime.Today) + 1 ;
+            }
+                
+            else
+            {
+                @ViewBag.CurrentWeek = GetWeekNumber(DateTime.Today);
+
+            }
+
             List<SelectListItem> items = new List<SelectListItem>();
             for(int i = 0; i <= 100; i++){
                 items.Add(new SelectListItem
@@ -68,10 +97,14 @@ namespace ProductieSysteem.Controllers
 
 
             ViewBag.Procenten = items;
-            
-            @ViewBag.CurrentWeek = GetWeekNumber(DateTime.Today);
+          
+
+
             return View();
         }
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Week([Bind(Include = "weekId,maandag,dinsdag,woensdag,donderdag,vrijdag,zaterdag,zondag,productType")] Weekproductie weekproductie)
