@@ -13,6 +13,8 @@ namespace ProductieSysteem.Controllers
     public class ProductieController : Controller
     {
         DataContext db = new DataContext();
+        public DateTime dt;
+
         // GET: Dashboard
         public ActionResult Index()
         {
@@ -42,14 +44,13 @@ namespace ProductieSysteem.Controllers
             items.Add(new SelectListItem { Text = "Paprika", Value = "3" });
 
             ViewBag.Dagdelen = items;
+            return ViewBag;
+        }
 
            // string week = DateTime.Now.ToLongDateString();
             
 
 //string aantal;
-           
-            return View();
-        }
 
         public static int GetWeekNumber(DateTime dtPassed)
         {
@@ -66,24 +67,53 @@ namespace ProductieSysteem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult WeekProductie([Bind(Include="")*/
+
+
+       // public int cWeek = Convert.ToInt16(eCore.SqlHelper.ExecuteScalar(conn, CommandType.Text, sSqlSelect));
+        public int CurrentWeek;
+
+       // public DateTime CurrentSetDate = DateTime.Now;
         public ActionResult Week (string deWeek)
         {
-            
-            if (deWeek == "1")
+            if (dt.ToString() == "1-1-0001 00:00:00")
             {
-                @ViewBag.CurrentWeek = GetWeekNumber(DateTime.Today) - 1 ;
-               
+                dt = DateTime.Now;
             }
 
-            if (deWeek == "2")
+            
+            if (deWeek == "VorigeWeek")
             {
-                @ViewBag.CurrentWeek = GetWeekNumber(DateTime.Today) + 1 ;
+               // @ViewBag.CurrentWeek = GetWeekNumber(CurrentSetDate.AddDays(+7));
+               // CurrentSetDate = CurrentSetDate.AddDays(+7);
+                //@ViewBag.CurrentWeek = CurrentWeek -= 1;
+               // @ViewBag.CurrentWeek = a;
+                //DateTime LastMonday = DateTime.Now.AddDays(-1);
+                //while (LastMonday.DayOfWeek != DayOfWeek.Monday)
+                //    LastMonday = LastMonday.AddDays(-1);
+                dt.AddDays(7);
+                dt.ToString();
+                //@ViewBag.currentWeek = LastMonday.AddDays(-1); 
+                //@ViewBag.currentWeek = LastMonday.AddDays(-1); 
+                   
             }
-                
+
+            if (deWeek == "VolgendeWeek")
+            {
+               // @ViewBag.GetWeekNumber += 1;
+                //int nextWeek = CurrentWeek += 1;
+               //@ViewBag.CurrentWeek = GetWeekNumber(DateTime.Now) + 1;
+                //@ViewBag.CurrentWeek = GetWeekNumber(CurrentSetDate.AddDays(+7));
+                //CurrentSetDate = CurrentSetDate.AddDays(+7);
+                DateTime nextMonday = DateTime.Now.AddDays(1);
+                while (nextMonday.DayOfWeek != DayOfWeek.Monday)
+                    nextMonday = nextMonday.AddDays(1);
+                //@ViewBag.currentWeek = next; 
+            }
+
             else
             {
+                CurrentWeek = GetWeekNumber(DateTime.Today);
                 @ViewBag.CurrentWeek = GetWeekNumber(DateTime.Today);
-
             }
 
             List<SelectListItem> items = new List<SelectListItem>();
