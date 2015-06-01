@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace ProductieSysteemV1._0.Models
 {
@@ -27,6 +28,28 @@ namespace ProductieSysteemV1._0.Models
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+        //Om de modellen aan de preflix die vanuit school gesteld wordt te laten te voldoen worden hier de namen van de 
+        //tabellen aangepast. Dit gebeurdt wanneer er wordt gecontroleerd of de tabbellen die benodigd zijn voor het functioneren
+        //van het user authentication system. 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<IdentityUser>()
+                .ToTable("users", "tbl_");
+
+            modelBuilder.Entity<IdentityRole>()
+                .ToTable("userType", "tbl_");
+
+            modelBuilder.Entity<IdentityUserRole>()
+                .ToTable("userTypeRole", "tbl_");
+
+            modelBuilder.Entity<IdentityUserClaim>()
+                .ToTable("userClaims", "tbl_");
+
+            modelBuilder.Entity<IdentityUserLogin>()
+                .ToTable("userLogins", "tbl_");
         }
     }
 }
