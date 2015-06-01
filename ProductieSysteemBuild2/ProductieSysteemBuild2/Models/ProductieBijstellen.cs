@@ -7,7 +7,7 @@ namespace ProductieSysteemBuild2.Models
     using System.Data.Entity.Spatial;
 
     [Table("tbl_.Weekproductie")]
-    public partial class Weekproductie
+    public partial class ProductieBijstellen
     {
         [Key]
         public int weekId { get; set; }
@@ -35,16 +35,16 @@ namespace ProductieSysteemBuild2.Models
 
         public int? productType { get; set; }
     }
-    public enum DagenInWeek
-    {
-        Maandag = 1,
-        Dinsdag = 2,
-        Woensdag = 3,
-        Donderdag = 4,
-        Vrijdag = 5,
-        Zaterdag = 6,
-        Zondag = 7
+    //public enum DagenVanDeWeek
+    //{
+    //    Maandag = 1,
+    //    Dinsdag = 2,
+    //    Woensdag = 3,
+    //    Donderdag = 4,
+    //    Vrijdag = 5,
+    //    Zaterdag = 6,
+    //    Zondag = 7
 
-    }
+    //}
 
 }

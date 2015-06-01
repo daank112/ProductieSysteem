@@ -165,6 +165,7 @@
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Producten.cs" />
     <Compile Include="Models\Roles.cs" />
+    <Compile Include="Models\ProductieBijstellen.cs" />
     <Compile Include="Models\Weekproductie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
