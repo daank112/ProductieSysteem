@@ -3,12 +3,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using System;
 
 namespace ProductieSysteemV1._0.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public virtual Userinfo userInfo { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -16,7 +18,10 @@ namespace ProductieSysteemV1._0.Models
             // Add custom user claims here
             return userIdentity;
         }
+        
+        
     }
+    
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -25,6 +30,10 @@ namespace ProductieSysteemV1._0.Models
         {
         }
 
+        public virtual DbSet<Userinfo> userInfo { get; set; }
+        
+      
+        
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
@@ -50,6 +59,9 @@ namespace ProductieSysteemV1._0.Models
 
             modelBuilder.Entity<IdentityUserLogin>()
                 .ToTable("userLogins", "tbl_");
+
+            modelBuilder.Entity<Userinfo>()
+                .ToTable("userInfo", "tbl_");
         }
     }
 }

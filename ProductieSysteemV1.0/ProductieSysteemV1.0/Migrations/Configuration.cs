@@ -9,7 +9,7 @@ namespace ProductieSysteemV1._0.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(ProductieSysteemV1._0.Models.ApplicationDbContext context)

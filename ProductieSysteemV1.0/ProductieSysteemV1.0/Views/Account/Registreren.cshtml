@@ -1,0 +1,136 @@
+﻿@model ProductieSysteemV1._0.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+@{
+    ViewBag.Title = "CreateUser";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    foreach (var role in Roles.GetAllRoles())
+    {
+
+        listItems.Add(new SelectListItem
+             {
+                 Text = role.ToString(),
+                 Value = role.ToString()
+             });
+    }
+}
+<h2>Nieuwe gebruiker toevoegen</h2>
+<div class="row">
+    <div class="col-xs-12 LoginForm">
+        <section id="loginForm">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true);
+                <div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m._UserInfo.FirstName, new { @class = "col-md-4  control-label" })
+                        <div class="col-xs-12">
+                            @Html.TextBoxFor(m => m._UserInfo.FirstName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m._UserInfo.LastName, new { @class = "col-md-4  control-label" })
+                        <div class="col-xs-12">
+                            @Html.TextBoxFor(m => m._UserInfo.LastName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m._UserInfo.CompanyName, new { @class = "col-md-4  control-label" })
+                        <div class="col-xs-12">
+                            @Html.TextBoxFor(m => m._UserInfo.CompanyName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(m => m._UserInfo.Street, new { @class = "col-md-4  control-label" })
+                        <div class="col-xs-12">
+                            @Html.TextBoxFor(m => m._UserInfo.Street, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m._UserInfo.HouseNumber, new { @class = "col-md-4  control-label" })
+                        <div class="col-xs-12">
+                            @Html.TextBoxFor(m => m._UserInfo.HouseNumber, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m._UserInfo.City, new { @class = "col-md-4  control-label" })
+                        <div class="col-xs-12">
+                            @Html.TextBoxFor(m => m._UserInfo.City, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m._UserInfo.ZipCode, new { @class = "col-md-4  control-label" })
+                        <div class="col-xs-12">
+                            @Html.TextBoxFor(m => m._UserInfo.ZipCode, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m._UserInfo.PhoneNumber, new { @class = "col-md-4  control-label" })
+                        <div class="col-xs-12">
+                            @Html.TextBoxFor(m => m._UserInfo.PhoneNumber, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.UserName, new { @class = "col-md-4  control-label" })
+                        <div class="col-xs-12">
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.UserName, new { @class = "col-md-4  control-label" })
+                        <div class="col-xs-12">
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-4  control-label" })
+                        <div class="col-md-12">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-4  control-label" })
+                        <div class="col-md-12">
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-4  control-label" })
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.userRoles, new { @class = "col-md-4  control-label" })
+                        <div class="col-md-12">
+
+                            @Html.DropDownListFor(m => m.userRoles.RoleName, listItems, new { @class = "col-md-1  form-control" })
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12 col-md-4 col-md-offset-4">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+</div>
+

@@ -13,7 +13,7 @@ namespace ProductieSysteemV1._0
     {
         protected void Application_Start()
         {
-            Database.SetInitializer<Models.ApplicationDbContext>(null);
+            Database.SetInitializer<Models.DbContextClass>(null);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

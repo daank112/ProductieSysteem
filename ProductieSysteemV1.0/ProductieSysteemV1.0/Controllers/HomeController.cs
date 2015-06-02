@@ -11,7 +11,7 @@ namespace ProductieSysteemV1._0.Controllers
     {
         public ActionResult Index()
         {
-            Roles.CreateRole("Teler");
+          
             return View();
         }
         
