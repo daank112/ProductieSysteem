@@ -39,7 +39,7 @@
                 <li>
                     @if (User.IsInRole("administrator") || User.IsInRole("veiling"))
                     {
-                        @Html.ActionLink("Weekproductie inzien", "dag", "Overview")
+                        @Html.ActionLink("Weekproductie inzien", "index", "Overview")
                     }
                     @if (User.IsInRole("Teler"))
                     {

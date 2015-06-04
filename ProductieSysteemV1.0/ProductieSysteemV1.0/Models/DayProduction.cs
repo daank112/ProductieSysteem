@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using Antlr;
+using Foolproof;
 
 namespace ProductieSysteemV1._0.Models
 {
@@ -45,5 +47,15 @@ namespace ProductieSysteemV1._0.Models
         [Column("750+")]
         [Display(Name = "750 +")]
         public int? C750_ { get; set; }
+
+        
+        [Range(100,100, ErrorMessage="De waarde komen niet op 100%")]
+        public int? Total
+        {
+            get
+            {
+                return C_350.Value + C350___400.Value + C400___500.Value + C500___650.Value + C650___750.Value + C750_.Value;
+            }
+        }
     }
 }

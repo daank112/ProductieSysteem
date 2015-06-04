@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="ProductieSysteemV1._0.Models.LoginViewModel">
+    <Position X="7.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAgAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProductieSysteemV1._0.Models.RegisterViewModel">
+    <Position X="2.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAACAAAAAAAAAAAAAACAAAAAACAQAAAAAAIAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProductieSysteemV1._0.Models.RolesModel">
+    <Position X="4" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAggAAAAQAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProductieSysteemV1._0.Models.DayProduction">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAABAQAACABACEAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Models\DayProduction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProductieSysteemV1._0.Models.DayViewModel">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DayViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProductieSysteemV1._0.Models.DbContextClass">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAQAAAAwAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DbContextClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProductieSysteemV1._0.Models.G_Rule">
+    <Position X="4" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEkAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\G_Rule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProductieSysteemV1._0.Models.ApplicationUser">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IdentityModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProductieSysteemV1._0.Models.ApplicationDbContext">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAQAAAAwAAAAAQAAAAAAEAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IdentityModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProductieSysteemV1._0.Models.OverviewModel">
+    <Position X="7.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAEAAAACAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Models\OverviewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProductieSysteemV1._0.Models.UserModel">
+    <Position X="9.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACCAAAAACAAIEAAEAAAQAABAAAAAAAIAQQAABAAAQA=</HashCode>
+      <FileName>Models\UserModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProductieSysteemV1._0.Models.Userinfo">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACQEAAAAAAAAAIAAAAQAAAAEAAAAABAAIAAAAAAAg=</HashCode>
+      <FileName>Models\UserModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProductieSysteemV1._0.Models.WeekProduction">
+    <Position X="5.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAIAAAEAACAAAAKAAAAEAgAAAAACAAgAAAAAAAAAA=</HashCode>
+      <FileName>Models\WeekProduction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProductieSysteemV1._0.Models.WeekViewModel">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAFAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\WeekViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProductieSysteemV1._0.Controllers.AccountController">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABACAAAAQAACAAAEAAAMAAAAAAAIAAAAQAAAgAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProductieSysteemV1._0.Controllers.DashboardController">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\DashboardController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProductieSysteemV1._0.Controllers.HomeController">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEACAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProductieSysteemV1._0.Controllers.OverviewController">
+    <Position X="11" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAQAAAAAEACAACAAE=</HashCode>
+      <FileName>Controllers\OverviewController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProductieSysteemV1._0.Controllers.ProductionController">
+    <Position X="11" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAQAAAAAAAAAEAAAAAAAAAAAAEAAIAAAAA=</HashCode>
+      <FileName>Controllers\ProductionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="ProductieSysteemV1._0.Models.DaysOfWeek">
+    <Position X="2.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAQAAAAAAAAAAIgAAACAAAAAAAgAAAAAACAA=</HashCode>
+      <FileName>Models\WeekProduction.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

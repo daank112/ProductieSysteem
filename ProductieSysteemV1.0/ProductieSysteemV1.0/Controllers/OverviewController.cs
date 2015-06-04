@@ -29,7 +29,7 @@ namespace ProductieSysteemV1._0.Controllers
                               .OrderByDescending(x => x.weekId);
                 return View(allWeek);
             }
-            if (User.IsInRole("veiling"))
+            if (User.IsInRole("veiling") || User.IsInRole("administrator")) 
             {
                 var allWeek = (from s in db.G_Rule
                                select s)

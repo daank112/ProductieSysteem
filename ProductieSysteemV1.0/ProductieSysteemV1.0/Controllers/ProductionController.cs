@@ -68,7 +68,7 @@ namespace ProductieSysteemV1._0.Controllers
                     db.WeekProduction.Add(model.weekProduction);
                     db.G_Rule.Add(model.g_Rule);
                     //Sla de gegevens op in de database
-                   // db.SaveChanges();
+                    db.SaveChanges();
                     //Navigeer naar de volgende pagina met in de url het weekid
                     return RedirectToAction("Day", "Production", new { week = _weekId });
                 }
@@ -152,11 +152,18 @@ namespace ProductieSysteemV1._0.Controllers
 
             if (ModelState.IsValid)
             {
+                
+               
                 if (week == null)
                 {
                     ModelState.AddModelError("", "Erg ging iets fout... probeer het nogmaals");
                     return View();
                 }
+              
+                      
+                   
+                    
+               
                 else
                 {
                     var dayExitsts = from d in db.DayProduction
@@ -172,10 +179,14 @@ namespace ProductieSysteemV1._0.Controllers
                     {
                         for (int i = 0; i < model.Count; i++)
                         {
-                            model[i].weekId = week.Value;
-                            model[i].userId = userID;
-                            db.DayProduction.Add(model[i]);
-                            db.SaveChanges();
+                            if(model[i].Total > 0)
+                            {
+                                model[i].weekId = week.Value;
+                                model[i].userId = userID;
+                                db.DayProduction.Add(model[i]);
+                                db.SaveChanges();
+                            }
+                            
                         }
                         return RedirectToAction("Index");
                     }

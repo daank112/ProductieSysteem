@@ -9,7 +9,7 @@
 
 @foreach (var key in Model)
 {
-    if (User.IsInRole("veiling"))
+    if (User.IsInRole("veiling") || User.IsInRole("administrator"))
     {
         <p>@Html.ActionLink(key.weekId.ToString(), "Veiling", "Overview", new { week = key.weekId }, null)</p>
     }

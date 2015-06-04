@@ -168,7 +168,7 @@ namespace ProductieSysteemV1._0.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Dashboard");
             }
         }
 
