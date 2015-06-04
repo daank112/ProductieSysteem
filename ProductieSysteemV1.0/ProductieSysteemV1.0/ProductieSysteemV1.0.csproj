@@ -166,17 +166,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201506020850117_Mig1.cs" />
-    <Compile Include="Migrations\201506020850117_Mig1.Designer.cs">
-      <DependentUpon>201506020850117_Mig1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DayProduction.cs" />
     <Compile Include="Models\DayViewModel.cs" />
     <Compile Include="Models\DbContextClass.cs" />
     <Compile Include="Models\G_Rule.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\OverviewModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\WeekProduction.cs" />
     <Compile Include="Models\WeekViewModel.cs" />
@@ -222,23 +218,23 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_UserLayout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Production\Day.cshtml" />
+    <Content Include="Views\Production\Index.cshtml" />
+    <Content Include="Views\Production\Week.cshtml" />
+    <Content Include="Views\Production\EditDay.cshtml" />
+    <Content Include="Views\Overview\ProductionTeler.cshtml" />
+    <Content Include="Views\Overview\Index.cshtml" />
+    <Content Include="Views\Overview\Telers.cshtml" />
+    <Content Include="Views\Overview\Veiling.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Overview\" />
-    <Folder Include="Views\Produciton\" />
-    <Folder Include="Views\Production\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201506020850117_Mig1.resx">
-      <DependentUpon>201506020850117_Mig1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

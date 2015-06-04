@@ -24,6 +24,7 @@
                     </a>
                 </li>
                 <li>
+                    
                     <p>Welkom: @User.Identity.Name.ToString()</p>
                 </li>
                 <li>
@@ -43,7 +44,7 @@
                     @if (User.IsInRole("Teler"))
                     {
                         //Hier moet de Id van de week bij
-                        @Html.ActionLink("Weekproductie inzien", "dag", "Overview")
+                        @Html.ActionLink("Weekproductie inzien", "index", "Overview")
                     }
                 </li>
                 <li>

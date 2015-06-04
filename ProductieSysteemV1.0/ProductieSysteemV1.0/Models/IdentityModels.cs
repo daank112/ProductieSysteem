@@ -7,15 +7,13 @@ using System;
 
 namespace ProductieSysteemV1._0.Models
 {
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        //Voeg het model UserInfo toe aan de standaard user identity. Dit geeft de mogelijkheid om extra informatie van de gebruikers op te slaan
         public virtual Userinfo userInfo { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
-            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-            // Add custom user claims here
             return userIdentity;
         }
         
@@ -31,9 +29,12 @@ namespace ProductieSysteemV1._0.Models
         }
 
         public virtual DbSet<Userinfo> userInfo { get; set; }
-        
-      
-        
+        public virtual DbSet<RolesModel> RolesModel { get; set; }
+
+        public virtual DbSet<UserModel> UserModel { get; set; }
+        public virtual DbSet<DayProduction> DayProduction { get; set; }
+        public virtual DbSet<WeekProduction> WeekProduction { get; set; }
+        public virtual DbSet<G_Rule> G_Rule { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

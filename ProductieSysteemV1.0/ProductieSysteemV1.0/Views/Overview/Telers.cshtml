@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ProductieSysteemV1._0.Models.Userinfo>
+@{
+    ViewBag.Title = "Telers";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Telers</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Voornaam</th>
+            <th>Achternaam</th>
+            <th>Bedrijfsnaam</th>
+            <th>Locatie</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.CompanyName</td>
+                <td>@item.City</td>
+            </tr>
+           
+        }
+    </tbody>
+</table>

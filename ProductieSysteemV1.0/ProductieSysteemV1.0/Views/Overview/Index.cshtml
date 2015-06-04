@@ -1,0 +1,21 @@
+﻿@model IEnumerable<ProductieSysteemV1._0.Models.G_Rule>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h4>Selecteer een week</h4>
+<p>Dit zijn de weken die momenteel voorkomen in het systeem. Klik op een week om het overzicht weer te kunnen geven.</p>
+
+@foreach (var key in Model)
+{
+    if (User.IsInRole("veiling"))
+    {
+        <p>@Html.ActionLink(key.weekId.ToString(), "Veiling", "Overview", new { week = key.weekId }, null)</p>
+    }
+    if (User.IsInRole("teler"))
+    {
+        <p>@Html.ActionLink(key.weekId.ToString(), "ProductionTeler", "Overview", new { week = key.weekId }, null)</p>
+    }
+
+}

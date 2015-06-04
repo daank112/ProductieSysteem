@@ -1,0 +1,93 @@
+﻿@model IList<ProductieSysteemV1._0.Models.DayProduction>
+@{
+    ViewBag.Title = "Day";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@{
+    int z = 0;
+    var listItems = new SelectList(Enumerable.Range(0, 101)); 
+}
+<div class="container">
+    @using(Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="row">
+            @*Haal alle dagen van de week op middels een for loop.*@
+            
+            @foreach (var day in typeof(ProductieSysteemV1._0.Models.DaysOfWeek).GetEnumNames())
+            {
+                <div class="col-md-4 col-xs-12 col-sm-6 col-lg-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center">@day</div>
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="col-xs-6">Klasse</th>
+                                        <th class="col-xs-6">Aantal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            @Html.HiddenFor(m => m[z].day, new { @Value = day })
+                                            @Html.LabelFor(m => m[z].C_350)
+                                        </td>
+                                        <td>
+                                            @Html.DropDownListFor(m => m[z].C_350, listItems, new { @class = "col-md-1  form-control" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.LabelFor(m => m[z].C350___400)
+                                        </td>
+                                        <td>
+                                            @Html.DropDownListFor(m => m[z].C350___400, listItems, new { @class = "col-md-1  form-control" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.LabelFor(m => m[z].C400___500)
+                                        </td>
+                                        <td>
+                                            @Html.DropDownListFor(m => m[z].C400___500, listItems, new { @class = "col-md-1  form-control" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.LabelFor(m => m[z].C500___650)
+                                        </td>
+                                        <td>
+                                            @Html.DropDownListFor(m => m[z].C500___650, listItems, new { @class = "col-md-1  form-control" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.LabelFor(m => m[z].C650___750)
+                                        </td>
+                                        <td>
+                                            @Html.DropDownListFor(m => m[z].C650___750, listItems, new { @class = "col-md-1  form-control" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.LabelFor(m => m[z].C750_)
+                                        </td>
+                                        <td>
+                                            @Html.DropDownListFor(m => m[z].C750_, listItems, new { @class = "col-md-1  form-control" })
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                 </div>
+               z++;
+              }
+            <p>Invoer opslaan</p>
+           <input class="btn btn-default" type="submit" value="Input">
+      </div>
+    }
+</div>
+

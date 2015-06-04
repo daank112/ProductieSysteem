@@ -1,0 +1,144 @@
+﻿@model ProductieSysteemV1._0.Models.WeekViewModel
+@{
+    ViewBag.Title = "Week";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@{
+    //Hier wordt een list aangemaakt. In deze list worden de getallen 0 t/m 100 geplaats
+    //Deze list gaat straks de waarde voor de selectlist invullen en staat voor het percentage (0% - 100%)
+    var listItems = new SelectList(Enumerable.Range(0, 101)); }
+<h2>Weekverwachting opgeven</h2>
+<div class="alert alert-success" id="succes" style="display: none;" role="alert">Gegevens worden opgeslagen</div>
+<div class="alert alert-danger" id="alert" style="display: none;" role="alert"><p></p></div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, null, new { @class = "bg-danger" });
+
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-2 col-xs-12 text-left"><input type="button" id="vorigeWeek" value="Vorige" class="btn btn-default btn-sm" /></div>
+            <div class="col-md-8 col-xs-12 text-center">Huidige week:<div id="CurrentWeek">@Html.ValueFor(m => m.CurrentWeek)</div> </div>
+            <div class="col-md-2 col-xs-12 text-right"><input type="button" id="volgendeWeek" value="Volgende" class="btn btn-default btn-sm" /></div>
+
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.CurrentWeek, new {  @id = "currentWeekHidden"  })
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        @* Een foreach loop, deze haalt uit het model dagen de dagen van de week op. Deze staan in een enum. *@
+                        @foreach (var day in typeof(ProductieSysteemV1._0.Models.DaysOfWeek).GetEnumNames())
+                        {
+                            <th>@day</th>
+                        }
+                        <th>Totaal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DropDownListFor(m => m.weekProduction.monday, listItems, new { @class = "col-md-1  form-control" ,id = "input-maandag"})
+                        </td>
+                        <td>
+                        @Html.DropDownListFor(m => m.weekProduction.tuesday, listItems, new { @class = "col-md-1  form-control", id = "input-dinsdag" })
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(m => m.weekProduction.wednesday, listItems, new { @class = "col-md-1  form-control", id = "input-woensdag" })
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(m => m.weekProduction.thursday, listItems, new { @class = "col-md-1  form-control", id = "input-donderdag" })
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(m => m.weekProduction.friday, listItems, new { @class = "col-md-1  form-control", id = "input-vrijdag" })
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(m => m.weekProduction.saturday, listItems, new { @class = "col-md-1  form-control", id = "input-zaterdag" })
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(m => m.weekProduction.sunday, listItems, new { @class = "col-md-1  form-control", id = "input-zondag" })
+                    </td>
+                    <td>
+                        <div class="col-xs-12">
+                            @Html.TextBoxFor(m => m.g_Rule.weekProduction, new { @class = "col-xs-12  form-control" })
+                            @Html.ValidationMessageFor(m => m.g_Rule.weekProduction, null, new { @class = "col-xs-12 text-danger" })
+                        </div>
+                        
+                    </td>
+                    </tr>
+                </tbody>
+
+
+            </table>
+        </div>
+    </div>
+    <button id="button1" class="btn btn-default">Verder</button>
+    
+}
+<script>
+    $(document).ready(function () {
+        $("#vorigeWeek").click(function () {
+            var currentweek = $('#CurrentWeek').text();
+            if (currentweek == 1) {
+                $('#CurrentWeek').text("52");
+                $('#currentWeekHidden').val("52");
+            }
+            else {
+                currentweek--;
+                $('#CurrentWeek').text(currentweek);
+                $('#currentWeekHidden').val(currentweek);
+            }
+        });
+        $("#volgendeWeek").click(function () {
+            var currentweek = $('#CurrentWeek').text();
+            if (currentweek == 52) {
+                $('#CurrentWeek').text("1");
+                $('#currentWeekHidden').val("1");
+            }
+            else {
+                currentweek++;
+                $('#CurrentWeek').text(currentweek);
+                $('#currentWeekHidden').val(currentweek);
+            }
+        });
+        $('#button1').click(function (evt) {
+            evt.preventDefault();
+            var $form = $('form');
+
+            var total = [];
+            total.push($("#input-maandag option:selected").text())
+            total.push($("#input-dinsdag option:selected").text())
+            total.push($("#input-woensdag option:selected").text());
+            total.push($("#input-donderdag option:selected").text())
+            total.push($("#input-vrijdag option:selected").text())
+            total.push($("#input-zaterdag option:selected").text())
+            total.push($("#input-zondag option:selected").text())
+            console.log(total);
+            var result = 0;
+            for (var i = 0; i < total.length; i++) {
+                result += total[i] << 0;
+            }
+            if (result.toString() == 100) {
+                $form.submit();
+                
+            }
+            else {
+                $("#texens").val(result);
+                $("p").text("De weekverwachting is niet correct. De som van de dagen is " + result);
+                $("#alert").show();
+                return false;
+            }
+            
+        })
+        function IsValid() {
+
+
+        }
+        });
+        
+   
+   
+</script>

@@ -26,7 +26,7 @@ namespace ProductieSysteemV1._0.Models
         public string UserName { get; set; }
 
         [Required]
-        
+
         [Display(Name = "Wachtwoord")]
         public string Password { get; set; }
 
@@ -41,9 +41,9 @@ namespace ProductieSysteemV1._0.Models
 
         [Required]
         [Display(Name = "Gebruikerstype")]
-        public RolesModel userRoles {get; set;}
+        public RolesModel userRoles { get; set; }
 
-        public virtual Userinfo _UserInfo  { get; set; }
+        public virtual Userinfo _UserInfo { get; set; }
     }
     public class RolesModel
     {
@@ -58,14 +58,16 @@ namespace ProductieSysteemV1._0.Models
 
         [Required]
         [StringLength(256)]
-        public string LoweredRoleName { 
-            get {
+        public string LoweredRoleName
+        {
+            get
+            {
                 return RoleName;
             }
-            }
+        }
 
         [StringLength(256)]
         public string Description { get; set; }
     }
-    
+   
 }

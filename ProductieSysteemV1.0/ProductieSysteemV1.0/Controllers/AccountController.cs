@@ -122,19 +122,14 @@ namespace ProductieSysteemV1._0.Controllers
                 }
 
             }
+                ModelState.AddModelError("", "Er ging iets niet helemaal goed. Probeer het opnieuw");
                 return View(model);
+                
            
         }
         public ActionResult Logout()
-        {
-            try
-            {
-                FormsAuthentication.SignOut();
-            }
-            catch(Exception e)
-            {
-                e.ToString();
-            }
+        {     
+            AuthenticationManager.SignOut();
             return RedirectToAction("Login");
         }
 

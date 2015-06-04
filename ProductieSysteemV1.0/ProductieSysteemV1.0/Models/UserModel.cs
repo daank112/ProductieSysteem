@@ -51,20 +51,21 @@ namespace ProductieSysteemV1._0.Models
         [Key]
         public string Id {get;set;}
 
+        [DisplayName("Voornaam")]
         public string FirstName { get; set; }
-
+        [DisplayName("Achternaam")]
         public string LastName { get; set; }
-
+        [DisplayName("Bedrijfsnaam")]
         public string CompanyName { get; set; }
-
+        [DisplayName("Straat")]
         public string Street { get; set; }
-
+        [DisplayName("Huisnummer")]
         public int HouseNumber { get; set; }
-
+        [DisplayName("Stad")]
         public string City { get; set; }
-
+        [DisplayName("Postcode")]
         public string ZipCode { get; set; }
-
+        [DisplayName("Telefoon nummer")]
         public string PhoneNumber { get; set; }
     }
    

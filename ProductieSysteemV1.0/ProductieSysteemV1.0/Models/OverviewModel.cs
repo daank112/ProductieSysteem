@@ -5,11 +5,12 @@ using System.Web;
 
 namespace ProductieSysteemV1._0.Models
 {
-    public class WeekViewModel
+    public class OverviewModel
     {
-        public G_Rule g_Rule { get; set; }
-        public int CurrentWeek { get; set; }
+        public G_Rule rule { get; set; }
         public WeekProduction weekProduction { get; set; }
+        public DayProduction dayProduction { get; set; }
 
+        public List<DayProduction> dayProductionList { get; set; }
     }
 }

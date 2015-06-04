@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ProductieSysteemV1._0.Models.OverviewModel>
+@{
+    ViewBag.Title = "ProductionTeler";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Productieoverzicht week: @ViewBag.CurrentWeek</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Maandag</th>
+            <th>Dinsdag</th>
+            <th>Woensdag</th>
+            <th>Donderdag</th>
+            <th>Vrijdag</th>
+            <th>Zaterdag</th>
+            <th>Zondag</th>
+            <th>Totaal</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var i in Model)
+            {
+
+                <td>@Html.DisplayFor(modelItem => i.weekProduction.monday) stuks</td>
+                <td>@Html.DisplayFor(modelItem => i.weekProduction.tuesday) stuks</td>
+                <td>@Html.DisplayFor(modelItem => i.weekProduction.wednesday) stuks</td>
+                <td>@Html.DisplayFor(modelItem => i.weekProduction.thursday) stuks</td>
+                <td>@Html.DisplayFor(modelItem => i.weekProduction.friday) stuks</td>
+                <td>@Html.DisplayFor(modelItem => i.weekProduction.saturday) stuks</td>
+                <td>@Html.DisplayFor(modelItem => i.weekProduction.sunday) stuks</td>
+                <td>@Html.DisplayFor(modelItem => i.rule.weekProduction) stuks</td>
+
+            }
+        </tr>
+
+
+
+    </tbody>
+</table>
+<table class="table table-condensed">
+    <thead>
+        <tr>
+
+            <th>Dag</th>
+            <th>< 350</th>
+            <th> 350 - 400</th>
+            <th> 400 - 500</th>
+            <th> 500 - 650</th>
+            <th> 650 - 750</th>
+            <th> 750 ></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var q in Model)
+        {
+            foreach (var j in q.dayProductionList)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => j.day)</td>
+                    <td>@Html.DisplayFor(modelItem => j.C_350)%</td>
+                    <td>@Html.DisplayFor(modelItem => j.C350___400)%</td>
+                    <td>@Html.DisplayFor(modelItem => j.C400___500)%</td>
+                    <td>@Html.DisplayFor(modelItem => j.C500___650)%</td>
+                    <td>@Html.DisplayFor(modelItem => j.C650___750)%</td>
+                    <td>@Html.DisplayFor(modelItem => j.C750_)%</td>
+
+                </tr>
+            }
+        }
+
+
+    </tbody>
+</table>

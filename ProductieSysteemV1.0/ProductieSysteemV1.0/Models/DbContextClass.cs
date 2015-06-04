@@ -13,17 +13,16 @@ namespace ProductieSysteemV1._0.Models
             : base("DefaultConnection")
         {
         }
+
+          //Data context de verbinding tussen de modellen en de tabellen in de database. 
           public virtual DbSet<RolesModel> RolesModel { get; set; }
           public virtual DbSet<UserModel> UserModel { get; set; }
+          public virtual DbSet<DayProduction> DayProduction { get; set; }
+          public virtual DbSet<WeekProduction> WeekProduction { get; set; }
+          public virtual DbSet<G_Rule> G_Rule { get; set; }
+         
 
-        //public virtual DbSet<G_Regel> G_Regel { get; set; }
-        //public virtual DbSet<Gebruikers> Gebruikers { get; set; }
-        //public virtual DbSet<GebruikersType> GebruikersType { get; set; }
-        //public virtual DbSet<GebruikersTypeRol> GebruikersTypeRol { get; set; }
-        //public virtual DbSet<Login> Login { get; set; }
-        //public virtual DbSet<Producten> Producten { get; set; }
-        //public virtual DbSet<Weekproductie> Weekproductie { get; set; }
-        //public virtual DbSet<aspnet_Roles> Roles { get; set; }
+        
 
     }
 
