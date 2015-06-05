@@ -41,15 +41,94 @@ namespace ProductieSysteemV1._0.Controllers
             
         }
         public ActionResult Telers()
+
         {
-            string userId = User.Identity.GetUserId().ToString();
-            var roles = db.RolesModel.All(x => x.RoleName == "teler");
-            //var role = db.Roles.SingleOrDefault(m => m.Name == "teler");
+            //Haal alle gebruikersid's op van de gebruikers binnen de rol teler
+            string[] usersInRole = Roles.GetUsersInRole("teler");
+            //zoek alle gebruikers informatie
+            var users = db.Users.Where(usr => usersInRole.Contains(usr.UserName));
             
-            //var usersInRole = db.Users.Where(m => m.Roles.Any(r => r.RoleId == role.Id));
-           
-            
-            return View();
+            return View(users.ToList());
+        }
+        public ActionResult Week(string userid)
+        {
+            var allWeek = (from s in db.G_Rule
+                           where s.UserId == userid
+                           select s)
+                              .Take(10)
+                              .OrderByDescending(x => x.weekId);
+            return View(allWeek);
+
+        }
+        public ActionResult searchresult(int week, string userId)
+        {                        
+            //Haal alle weken op die de gebruiker heeft ingevoerd.
+            var weekExists = from w in db.G_Rule
+                             where w.UserId == userId
+                             select w.weekId;
+            // kijk of de week die word gevraagd bestaat.
+            if (weekExists.Contains(week) == false)
+            {
+                //wanneer dit niet het geval is keer terug naar de hompage.
+                return RedirectToAction("index", "overview");
+            }
+            else
+            {
+                //Haal van de gebruiker alle ingevoerde weekgegevens op uit de database. en plaats deze in de variable result
+                var result = (from g in db.G_Rule
+                              join wp in db.WeekProduction on g.weekId equals wp.weekId
+                              join t4 in db.DayProduction on new { Userid = userId, Week = week } equals new { Userid = t4.userId, Week = t4.weekId }
+                              where (g.UserId == userId) && (g.weekId == week) && (wp.userId == userId)
+
+                              select new
+                              {
+                                  WeekProduction = wp,
+                                  DayProduction = t4,
+                                  G_Rule = g
+                              });
+
+                // Controleer of result gegevens opgehaald heeft.
+                if (result.Any())
+                {
+                    //Maak een list aan obv van het overview model. plaats hier vervolgende de gegebens uit linq in. 
+                    List<OverviewModel> list = new List<OverviewModel>(){
+                    new OverviewModel{
+                        weekProduction = new WeekProduction{
+                                        monday = calcPercent(result.FirstOrDefault().G_Rule.weekProduction, result.FirstOrDefault().WeekProduction.monday.Value),
+                                        tuesday = calcPercent(result.FirstOrDefault().G_Rule.weekProduction, result.FirstOrDefault().WeekProduction.tuesday.Value), 
+                                        wednesday = calcPercent(result.FirstOrDefault().G_Rule.weekProduction, result.FirstOrDefault().WeekProduction.wednesday.Value), 
+                                        thursday = calcPercent(result.FirstOrDefault().G_Rule.weekProduction, result.FirstOrDefault().WeekProduction.thursday.Value), 
+                                        friday = calcPercent(result.FirstOrDefault().G_Rule.weekProduction, result.FirstOrDefault().WeekProduction.friday.Value), 
+                                        saturday = calcPercent(result.FirstOrDefault().G_Rule.weekProduction, result.FirstOrDefault().WeekProduction.saturday.Value), 
+                                        sunday = calcPercent(result.FirstOrDefault().G_Rule.weekProduction, result.FirstOrDefault().WeekProduction.sunday.Value) 
+                        },
+                        rule = new G_Rule{
+                            UserId = result.FirstOrDefault().G_Rule.UserId,
+                            weekId = result.FirstOrDefault().G_Rule.weekId,
+                            weekProduction = result.FirstOrDefault().G_Rule.weekProduction
+                        },
+                        //Maak een lege list aan als item [03]. Hier plaatsen ze we zomenteen de dag gegevens in.
+                        dayProductionList = new List<DayProduction>{
+                        }
+
+                    }
+
+                };
+                    //Met een foreach loop voeg ik de gegevens van de dagen toe. 
+                    foreach (var key in result)
+                    {
+
+                        list[0].dayProductionList.Add(new DayProduction { C_350 = key.DayProduction.C_350, C350___400 = key.DayProduction.C350___400, C400___500 = key.DayProduction.C400___500, C500___650 = key.DayProduction.C500___650, C650___750 = key.DayProduction.C650___750, C750_ = key.DayProduction.C750_, day = key.DayProduction.day, userId = key.DayProduction.userId });
+                    }
+                    ViewBag.CurrentWeek = week;
+
+                    return View(list);
+
+
+
+                }
+                return View();
+            }
         }
         public ActionResult Veiling(int week)
         {            
@@ -106,7 +185,7 @@ namespace ProductieSysteemV1._0.Controllers
                 return View(list);
                
 
-            return View(list);
+            
         }
 
         

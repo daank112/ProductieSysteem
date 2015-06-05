@@ -50,6 +50,12 @@
                 <li>
                     @if (User.IsInRole("administrator") || User.IsInRole("veiling"))
                     {
+                        @Html.ActionLink("Telers overzicht", "telers", "Overview")
+                    }                    
+                </li>
+                <li>
+                    @if (User.IsInRole("administrator") || User.IsInRole("veiling"))
+                    {
                         @Html.ActionLink("Gebruiker toevoegen", "registreren", "Account")
                     }
                     

@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace ProductieSysteemV1._0.Models
 {
@@ -30,7 +31,6 @@ namespace ProductieSysteemV1._0.Models
 
         public virtual DbSet<Userinfo> userInfo { get; set; }
         public virtual DbSet<RolesModel> RolesModel { get; set; }
-
         public virtual DbSet<UserModel> UserModel { get; set; }
         public virtual DbSet<DayProduction> DayProduction { get; set; }
         public virtual DbSet<WeekProduction> WeekProduction { get; set; }
@@ -63,6 +63,9 @@ namespace ProductieSysteemV1._0.Models
 
             modelBuilder.Entity<Userinfo>()
                 .ToTable("userInfo", "tbl_");
+
+           
         }
+        
     }
 }

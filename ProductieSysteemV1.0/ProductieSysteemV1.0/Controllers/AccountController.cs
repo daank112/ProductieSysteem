@@ -14,6 +14,8 @@ using ProductieSysteemV1._0.Models;
 using System.Web.Security;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using System.Net.Mail;
+using System.Net;
 
 namespace ProductieSysteemV1._0.Controllers
 {
@@ -65,7 +67,7 @@ namespace ProductieSysteemV1._0.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid username or password.");
+                    ModelState.AddModelError("", "Ongeldige gebruikersnaam of wachtwoord");
                 }
             }
 
@@ -111,9 +113,22 @@ namespace ProductieSysteemV1._0.Controllers
 
                 if (result.Succeeded)
                 {
-                    await SignInAsync(user, isPersistent: false);
+                    var body = "<p>Dear User,</p><p> You can login now with Username:{0} Password: {1}</p>";
+                    var message = new MailMessage();
+                    message.To.Add(new MailAddress(model.Email));  // replace with valid value 
+                    message.From = new MailAddress("daankleindop@outlook.com");  // replace with valid value
+                    message.Subject = "Your email subject";
+                    message.Body = string.Format(body, model.Email.ToString(), model.Password.ToString());
+                  
+                    message.IsBodyHtml = true;
 
-                    return RedirectToAction("Index", "Dashboard");
+                    using (var smtp = new SmtpClient())
+                    {
+                        await smtp.SendMailAsync(message);
+                        return RedirectToAction("Index", "Dashboard");
+                    }
+
+                    
                 }
                 else
                 {

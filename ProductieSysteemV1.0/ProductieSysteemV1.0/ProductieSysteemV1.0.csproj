@@ -231,6 +231,8 @@
     <Content Include="Views\Overview\Index.cshtml" />
     <Content Include="Views\Overview\Telers.cshtml" />
     <Content Include="Views\Overview\Veiling.cshtml" />
+    <Content Include="Views\Overview\Week.cshtml" />
+    <Content Include="Views\Overview\searchresult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
