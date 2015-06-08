@@ -237,9 +237,12 @@
     <Content Include="Views\Overview\Telers.cshtml" />
     <Content Include="Views\Overview\Veiling.cshtml" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Content Include="Views\Overview\Week.cshtml" />
     <Content Include="Views\Overview\searchresult.cshtml" />
     <Content Include="Views\Dashboard\Contact.cshtml" />
+=======
+>>>>>>> parent of ae12d04... Aanpassing
 =======
 >>>>>>> parent of ae12d04... Aanpassing
   </ItemGroup>
