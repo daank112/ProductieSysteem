@@ -11,7 +11,7 @@ using System.Net.Mail;
 
 namespace ProductieSysteemV1._0.Controllers
 {
- 
+ [Authorize]
     public class AccountController : Controller
     {
         
