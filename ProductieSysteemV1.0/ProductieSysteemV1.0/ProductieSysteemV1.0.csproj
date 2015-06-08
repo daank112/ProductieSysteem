@@ -172,7 +172,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DayProduction.cs" />
     <Compile Include="Models\DayViewModel.cs" />
-    <Compile Include="Models\DbContextClass.cs" />
     <Compile Include="Models\G_Rule.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\OverviewModel.cs" />
@@ -224,13 +223,13 @@
     <Content Include="Views\Production\Day.cshtml" />
     <Content Include="Views\Production\Index.cshtml" />
     <Content Include="Views\Production\Week.cshtml" />
-    <Content Include="Views\Production\EditDay.cshtml" />
     <Content Include="Views\Overview\ProductionTeler.cshtml" />
     <Content Include="Views\Overview\Index.cshtml" />
     <Content Include="Views\Overview\Telers.cshtml" />
     <Content Include="Views\Overview\Veiling.cshtml" />
     <Content Include="Views\Overview\Week.cshtml" />
     <Content Include="Views\Overview\searchresult.cshtml" />
+    <Content Include="Views\Dashboard\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

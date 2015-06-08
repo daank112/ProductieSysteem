@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using ProductieSysteemV1._0.Models;
 using System.Web.Security;
@@ -13,7 +11,7 @@ namespace ProductieSysteemV1._0.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
 
-
+        [Authorize]
         public ActionResult Index()
         {
             string userId = User.Identity.GetUserId().ToString();
@@ -40,6 +38,7 @@ namespace ProductieSysteemV1._0.Controllers
             return View();
             
         }
+        [Authorize]
         public ActionResult Telers()
 
         {
@@ -50,6 +49,7 @@ namespace ProductieSysteemV1._0.Controllers
             
             return View(users.ToList());
         }
+        [Authorize]
         public ActionResult Week(string userid)
         {
             var allWeek = (from s in db.G_Rule
@@ -60,6 +60,7 @@ namespace ProductieSysteemV1._0.Controllers
             return View(allWeek);
 
         }
+         [Authorize(Roles = "Administrator, Veiling")]
         public ActionResult searchresult(int week, string userId)
         {                        
             //Haal alle weken op die de gebruiker heeft ingevoerd.
@@ -124,12 +125,11 @@ namespace ProductieSysteemV1._0.Controllers
 
                     return View(list);
 
-
-
                 }
                 return View();
             }
         }
+        [Authorize(Roles = "Administrator, Veiling")]
         public ActionResult Veiling(int week)
         {            
             var result = (from g in db.G_Rule
@@ -162,9 +162,7 @@ namespace ProductieSysteemV1._0.Controllers
                         dayProductionList = new List<DayProduction>{
                             
                         }
-
                     }
-
                 };
             var dayTotal = (from g in db.DayProduction
                             where g.weekId == week
@@ -173,9 +171,6 @@ namespace ProductieSysteemV1._0.Controllers
                                 DayProduction = g
                             }).GroupBy(x => x.DayProduction.day);
 
-            
-          
-
             foreach (var key in dayTotal)
             {
                 int numberOfRecords = key.Count();
@@ -183,23 +178,10 @@ namespace ProductieSysteemV1._0.Controllers
             }
                 ViewBag.CurrentWeek = week;
                 return View(list);
-               
-
-            
         }
-
-        
-
         public ActionResult ProductionTeler(OverviewModel model, int week)
         {
-            if (week == null)
-            {
-                return RedirectToAction("index", "production");
-            }
-            else
-            {
-
-            
+           
             string userId = User.Identity.GetUserId().ToString();
 
             //Haal alle weken op die de gebruiker heeft ingevoerd.
@@ -268,11 +250,8 @@ namespace ProductieSysteemV1._0.Controllers
                    return RedirectToAction("index", "overview");
                }
             }
-
-            }
-
         }
-       
+        //Bereken het percentage door middel van het totaal en het aantal
         public int calcPercent(int? a, int?  b)
         {
             int total = (a.Value / 100) * b.Value;

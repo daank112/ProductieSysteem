@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using ProductieSysteemV1._0.Models;
-using System.Web.Security;
 using System.Globalization;
 
 namespace ProductieSysteemV1._0.Controllers
 {
-    [Authorize(Roles="Teler")]
+    
     public class ProductionController : Controller
     {
-        DbContextClass db = new DbContextClass();
+        ApplicationDbContext db = new ApplicationDbContext();
         
         public ActionResult Index()
         {
@@ -79,9 +77,10 @@ namespace ProductieSysteemV1._0.Controllers
             }
             return View(model);
         }
-
-        public ActionResult Day(int? week)
+         [Authorize]
+        public ActionResult Day( int? week)
         {
+            //Als er geen dag is opgegeven return naar week
             if (week == null)
             {
                 return RedirectToAction("Week", "Production");
@@ -93,38 +92,20 @@ namespace ProductieSysteemV1._0.Controllers
 
         }
 
-        public ActionResult EditDay(DayViewModel model, int? week)
-        {
-            string userID = User.Identity.GetUserId();
-
-
-           
-
-            return View();
-
-
-        }
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Day(IList<DayProduction> model, int? week)
         {
             string userID = User.Identity.GetUserId();
-
+           
             if (ModelState.IsValid)
             {
-                
-               
                 if (week == null)
                 {
                     ModelState.AddModelError("", "Erg ging iets fout... probeer het nogmaals");
                     return View();
                 }
-              
-                      
-                   
-                    
-               
                 else
                 {
                     var dayExitsts = from d in db.DayProduction
@@ -155,6 +136,5 @@ namespace ProductieSysteemV1._0.Controllers
             }
             return View();
         }
-
+        }
     }
-}

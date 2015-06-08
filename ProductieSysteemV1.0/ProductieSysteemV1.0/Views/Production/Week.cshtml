@@ -104,18 +104,18 @@
                 $('#currentWeekHidden').val(currentweek);
             }
         });
-        $('#button1').click(function (evt) {
+        $('#button1').click(function(evt) {
             evt.preventDefault();
             var $form = $('form');
 
             var total = [];
-            total.push($("#input-maandag option:selected").text())
-            total.push($("#input-dinsdag option:selected").text())
+            total.push($("#input-maandag option:selected").text());
+            total.push($("#input-dinsdag option:selected").text());
             total.push($("#input-woensdag option:selected").text());
-            total.push($("#input-donderdag option:selected").text())
-            total.push($("#input-vrijdag option:selected").text())
-            total.push($("#input-zaterdag option:selected").text())
-            total.push($("#input-zondag option:selected").text())
+            total.push($("#input-donderdag option:selected").text());
+            total.push($("#input-vrijdag option:selected").text());
+            total.push($("#input-zaterdag option:selected").text());
+            total.push($("#input-zondag option:selected").text());
             console.log(total);
             var result = 0;
             for (var i = 0; i < total.length; i++) {
@@ -123,21 +123,17 @@
             }
             if (result.toString() == 100) {
                 $form.submit();
-                
-            }
-            else {
+
+            } else {
                 $("#texens").val(result);
                 $("p").text("De weekverwachting is niet correct. De som van de dagen is " + result);
                 $("#alert").show();
                 return false;
             }
-            
-        })
-        function IsValid() {
-
-
-        }
         });
+
+
+    });
         
    
    

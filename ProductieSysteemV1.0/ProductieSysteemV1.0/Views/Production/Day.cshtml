@@ -70,13 +70,19 @@
                                             @Html.DropDownListFor(m => m[z].C650___750, listItems, new { @class = "col-md-1  form-control" })
                                         </td>
                                     </tr>
+                                <tr>
+                                    <td>
+                                        @Html.LabelFor(m => m[z].C750_)
+                                    </td>
+                                    <td>
+                                        @Html.DropDownListFor(m => m[z].C750_, listItems, new {@class = "col-md-1  form-control"})
+                                    </td>
+                                </tr>
                                     <tr>
                                         <td>
-                                            @Html.LabelFor(m => m[z].C750_)
+                                            @Html.LabelFor(m => m[z].Total)
                                         </td>
-                                        <td>
-                                            @Html.DropDownListFor(m => m[z].C750_, listItems, new { @class = "col-md-1  form-control" })
-                                        </td>
+                                        
                                     </tr>
                                 </tbody>
                             </table>
@@ -86,7 +92,7 @@
                z++;
               }
             <p>Invoer opslaan</p>
-           <input class="btn btn-default" type="submit" value="Input">
+           <input class="btn btn-default" type="submit" value="Opslaan">
       </div>
     }
 </div>

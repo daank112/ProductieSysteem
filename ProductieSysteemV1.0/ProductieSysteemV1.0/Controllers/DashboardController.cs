@@ -10,7 +10,13 @@ namespace ProductieSysteemV1._0.Controllers
     public class DashboardController : Controller
     {
         // GET: Dashboard
+        [Authorize]
         public ActionResult Index()
+        {
+            return View();
+        }
+        [Authorize]
+        public ActionResult Contact()
         {
             return View();
         }

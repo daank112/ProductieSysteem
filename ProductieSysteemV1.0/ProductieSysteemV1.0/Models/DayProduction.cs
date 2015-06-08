@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
-using Antlr;
-using Foolproof;
+
 
 namespace ProductieSysteemV1._0.Models
 {
@@ -49,7 +44,6 @@ namespace ProductieSysteemV1._0.Models
         public int? C750_ { get; set; }
 
         
-        [Range(100,100, ErrorMessage="De waarde komen niet op 100%")]
         public int? Total
         {
             get

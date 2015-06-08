@@ -12,7 +12,7 @@ namespace ProductieSysteemV1._0.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Wachtwoord")]
         public string Password { get; set; }
 
         [Display(Name = "Onthoudt mij?")]

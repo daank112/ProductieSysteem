@@ -1,28 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Owin;
 using ProductieSysteemV1._0.Models;
 using System.Web.Security;
-using System.Data.Entity.Validation;
-using System.Diagnostics;
 using System.Net.Mail;
-using System.Net;
+
 
 namespace ProductieSysteemV1._0.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+        
         private ApplicationUserManager _userManager;
 
         public AccountController()
@@ -57,9 +49,12 @@ namespace ProductieSysteemV1._0.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            //Controleer of alle velden zijn ingevuld. 
             if (ModelState.IsValid)
             {
+                //Zoek de gebruiker met de gebruikersnaam en het wachtwoord.
                 var user = await UserManager.FindAsync(model.Email, model.Password);
+                //Als deze is gevonden log de user in.
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
@@ -67,6 +62,7 @@ namespace ProductieSysteemV1._0.Controllers
                 }
                 else
                 {
+                    //Wanneer dit niet het geval is geeft de error
                     ModelState.AddModelError("", "Ongeldige gebruikersnaam of wachtwoord");
                 }
             }
@@ -80,21 +76,22 @@ namespace ProductieSysteemV1._0.Controllers
         {
             return View();
         }
-
         [HttpPost]
         [AllowAnonymous]
+        [Authorize(Roles = "Administrator, Veiling")]
         public async Task<ActionResult> Registreren(RegisterViewModel model)
         {
+            //Controleer of alle velden zijn ingevuld. 
             if (ModelState.IsValid)
             {
-
+                //Maak een variable user aan. Hier komen vervolgende de gegevens van de nieuwe user in. 
                 var user = new ApplicationUser()
                 {
                     UserName = model.UserName,
                     Email = model.Email,
                     userInfo = new Userinfo
                     {
-
+                        //De gegevens voor de zelf toegevoegde table userinfo
                         FirstName = model._UserInfo.FirstName,
                         LastName = model._UserInfo.LastName,
                         CompanyName = model._UserInfo.CompanyName,
@@ -107,12 +104,15 @@ namespace ProductieSysteemV1._0.Controllers
                 };
                 user.userInfo.Id = user.Id;
 
-                Roles.AddUserToRole(model.UserName, model.userRoles.RoleName);
-
+                //voeg de user toe aan het systeem
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
+                    //Voeg de gebruiker toe aan een rol uit de selectlist
+                    Roles.AddUserToRole(model.UserName, model.userRoles.RoleName);
+
+                    //Het versturen van de gebruikersnaam en wachtwoord via de maiul
                     var body = "<p>Dear User,</p><p> You can login now with Username:{0} Password: {1}</p>";
                     var message = new MailMessage();
                     message.To.Add(new MailAddress(model.Email));  // replace with valid value 
@@ -124,32 +124,28 @@ namespace ProductieSysteemV1._0.Controllers
 
                     using (var smtp = new SmtpClient())
                     {
+                        //Verstuur mail bericht naar email
                         await smtp.SendMailAsync(message);
+                        //Keer terug naar het dashboar
                         return RedirectToAction("Index", "Dashboard");
                     }
-
-                    
                 }
                 else
                 {
+                    //Zijn er errors ? laat deze zien.
                     AddErrors(result);
-                   
                 }
-
             }
                 ModelState.AddModelError("", "Er ging iets niet helemaal goed. Probeer het opnieuw");
                 return View(model);
-                
-           
         }
         public ActionResult Logout()
         {     
+            //Verwijder de login cookie
             AuthenticationManager.SignOut();
+            //Keer terug naar de login pagina
             return RedirectToAction("Login");
         }
-
-
-       
 
         private IAuthenticationManager AuthenticationManager
         {
