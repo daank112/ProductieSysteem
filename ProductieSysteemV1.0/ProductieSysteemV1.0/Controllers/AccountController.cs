@@ -13,6 +13,9 @@ using System.Net.Mail;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of ae12d04... Aanpassing
+=======
 >>>>>>> parent of ae12d04... Aanpassing
 =======
 >>>>>>> parent of ae12d04... Aanpassing
@@ -72,8 +75,12 @@ namespace ProductieSysteemV1._0.Controllers
                 {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     //Wanneer dit niet het geval is geeft de error
                     ModelState.AddModelError("", "Ongeldige gebruikersnaam of wachtwoord");
+=======
+                    ModelState.AddModelError("", "Invalid username or password.");
+>>>>>>> parent of ae12d04... Aanpassing
 =======
                     ModelState.AddModelError("", "Invalid username or password.");
 >>>>>>> parent of ae12d04... Aanpassing
@@ -125,6 +132,7 @@ namespace ProductieSysteemV1._0.Controllers
                 {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     //Voeg de gebruiker toe aan een rol uit de selectlist
                     Roles.AddUserToRole(model.UserName, model.userRoles.RoleName);
 
@@ -145,6 +153,11 @@ namespace ProductieSysteemV1._0.Controllers
                         //Keer terug naar het dashboar
                         return RedirectToAction("Index", "Dashboard");
                     }
+=======
+                    await SignInAsync(user, isPersistent: false);
+
+                    return RedirectToAction("Index", "Dashboard");
+>>>>>>> parent of ae12d04... Aanpassing
 =======
                     await SignInAsync(user, isPersistent: false);
 

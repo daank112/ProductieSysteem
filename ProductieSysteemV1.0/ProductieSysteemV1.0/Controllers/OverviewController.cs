@@ -47,6 +47,7 @@ namespace ProductieSysteemV1._0.Controllers
             
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             return View(users.ToList());
         }
         [Authorize]
@@ -131,11 +132,16 @@ namespace ProductieSysteemV1._0.Controllers
 =======
 =======
 >>>>>>> parent of ae12d04... Aanpassing
+=======
+>>>>>>> parent of ae12d04... Aanpassing
             //var usersInRole = db.Users.Where(m => m.Roles.Any(r => r.RoleId == role.Id));
            
             
             return View();
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of ae12d04... Aanpassing
+=======
 >>>>>>> parent of ae12d04... Aanpassing
 =======
 >>>>>>> parent of ae12d04... Aanpassing
@@ -195,6 +201,9 @@ namespace ProductieSysteemV1._0.Controllers
 
             return View(list);
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of ae12d04... Aanpassing
+=======
 >>>>>>> parent of ae12d04... Aanpassing
 =======
 >>>>>>> parent of ae12d04... Aanpassing
