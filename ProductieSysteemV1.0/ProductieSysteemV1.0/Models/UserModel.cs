@@ -68,7 +68,6 @@ namespace ProductieSysteemV1._0.Models
         [DisplayName("Telefoon nummer")]
         public string PhoneNumber { get; set; }
     }
-    
    
     
 }

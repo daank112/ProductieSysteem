@@ -6,8 +6,13 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ProductieSysteemV1._0.Models;
 using System.Web.Security;
+<<<<<<< HEAD
 using System.Net.Mail;
 
+=======
+using System.Data.Entity.Validation;
+using System.Diagnostics;
+>>>>>>> parent of ae12d04... Aanpassing
 
 namespace ProductieSysteemV1._0.Controllers
 {
@@ -62,8 +67,12 @@ namespace ProductieSysteemV1._0.Controllers
                 }
                 else
                 {
+<<<<<<< HEAD
                     //Wanneer dit niet het geval is geeft de error
                     ModelState.AddModelError("", "Ongeldige gebruikersnaam of wachtwoord");
+=======
+                    ModelState.AddModelError("", "Invalid username or password.");
+>>>>>>> parent of ae12d04... Aanpassing
                 }
             }
 
@@ -107,6 +116,7 @@ namespace ProductieSysteemV1._0.Controllers
 
                 if (result.Succeeded)
                 {
+<<<<<<< HEAD
                     //Voeg de gebruiker toe aan een rol uit de selectlist
                     Roles.AddUserToRole(model.UserName, model.userRoles.RoleName);
 
@@ -127,6 +137,11 @@ namespace ProductieSysteemV1._0.Controllers
                         //Keer terug naar het dashboar
                         return RedirectToAction("Index", "Dashboard");
                     }
+=======
+                    await SignInAsync(user, isPersistent: false);
+
+                    return RedirectToAction("Index", "Dashboard");
+>>>>>>> parent of ae12d04... Aanpassing
                 }
                 else
                 {

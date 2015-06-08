@@ -92,6 +92,59 @@ namespace ProductieSysteemV1._0.Controllers
 
         }
 
+<<<<<<< HEAD
+=======
+        public ActionResult EditDay(DayViewModel model, int? week)
+        {
+            string userID = User.Identity.GetUserId();
+
+
+            //var productList = db.DayProduction
+            //                    .Where(p => p.userId == userID && p.weekId == 262015)
+            //                    .ToList()
+            //                    .Select(item =>
+            //                        new DayProduction
+            //                          {
+            //                              day = item.day,
+            //                              C_350 = item.C_350,
+            //                              C350___400 = item.C350___400,
+            //                              C400___500 = item.C400___500,
+            //                              C500___650 = item.C500___650,
+            //                              C650___750 = item.C650___750,
+            //                              C750_ = item.C750_                                          
+            //                          })
+            //                    .AsQueryable(); // actually it's not useful after "ToList()" :D
+            //model.dagproductie = productList;
+            //int id = 12;
+            //DayViewModel dayys;
+            //dayys.dagProduction = db.DayProduction.Where(i => i.weekId == 262015 && i.userId == userID).AsQueryable();
+
+            //IEnumerable<DayProduction> nummerbale = new IEnumerable<DayProduction>()
+            //{
+                
+            //};
+
+
+
+
+
+            //model = (from b in db.DayProduction
+            //                             select new DayProduction
+            //                             {
+            //                                 weekId = b.weekId,
+            //                                 day = b.day
+            //                             }).Cast<DayProduction>();
+
+
+
+
+
+
+            return View();
+
+
+        }
+>>>>>>> parent of ae12d04... Aanpassing
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]

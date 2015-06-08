@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProductieSysteemV1._0.Models.ApplicationUser>
+﻿@model IEnumerable<ProductieSysteemV1._0.Models.Userinfo>
 @{
     ViewBag.Title = "Telers";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
@@ -11,17 +11,17 @@
             <th>Voornaam</th>
             <th>Achternaam</th>
             <th>Bedrijfsnaam</th>
-            <th></th>
+            <th>Locatie</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.userInfo.FirstName</td>
-                <td>@item.userInfo.LastName</td>
-                <td>@item.userInfo.CompanyName</td>
-                <td>@Html.ActionLink("Weekproductie", "week", "overview", new { userid = item.Id},null)</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.CompanyName</td>
+                <td>@item.City</td>
             </tr>
            
         }

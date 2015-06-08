@@ -15,7 +15,7 @@ namespace ProductieSysteemV1._0.Models
         [Display(Name = "Wachtwoord")]
         public string Password { get; set; }
 
-        [Display(Name = "Onthoudt mij?")]
+        [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
 

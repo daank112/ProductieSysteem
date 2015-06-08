@@ -40,13 +40,12 @@ namespace ProductieSysteemV1._0.Controllers
         }
         [Authorize]
         public ActionResult Telers()
-
         {
-            //Haal alle gebruikersid's op van de gebruikers binnen de rol teler
-            string[] usersInRole = Roles.GetUsersInRole("teler");
-            //zoek alle gebruikers informatie
-            var users = db.Users.Where(usr => usersInRole.Contains(usr.UserName));
+            string userId = User.Identity.GetUserId().ToString();
+            var roles = db.RolesModel.All(x => x.RoleName == "teler");
+            //var role = db.Roles.SingleOrDefault(m => m.Name == "teler");
             
+<<<<<<< HEAD
             return View(users.ToList());
         }
         [Authorize]
@@ -128,6 +127,12 @@ namespace ProductieSysteemV1._0.Controllers
                 }
                 return View();
             }
+=======
+            //var usersInRole = db.Users.Where(m => m.Roles.Any(r => r.RoleId == role.Id));
+           
+            
+            return View();
+>>>>>>> parent of ae12d04... Aanpassing
         }
         [Authorize(Roles = "Administrator, Veiling")]
         public ActionResult Veiling(int week)
@@ -178,6 +183,12 @@ namespace ProductieSysteemV1._0.Controllers
             }
                 ViewBag.CurrentWeek = week;
                 return View(list);
+<<<<<<< HEAD
+=======
+               
+
+            return View(list);
+>>>>>>> parent of ae12d04... Aanpassing
         }
         public ActionResult ProductionTeler(OverviewModel model, int week)
         {
