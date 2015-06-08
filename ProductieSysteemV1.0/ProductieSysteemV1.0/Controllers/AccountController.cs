@@ -11,7 +11,7 @@ using System.Net.Mail;
 
 namespace ProductieSysteemV1._0.Controllers
 {
-    [Authorize]
+ 
     public class AccountController : Controller
     {
         
@@ -71,14 +71,12 @@ namespace ProductieSysteemV1._0.Controllers
         }
 
 
-        [Authorize(Roles="Administrator, Veiling")]
         public ActionResult Registreren()
         {
             return View();
         }
         [HttpPost]
         [AllowAnonymous]
-        [Authorize(Roles = "Administrator, Veiling")]
         public async Task<ActionResult> Registreren(RegisterViewModel model)
         {
             //Controleer of alle velden zijn ingevuld. 
